@@ -99,8 +99,8 @@ function Inicio() {
           <input type="hidden" name="_template" value="table" />
           <input type="hidden" name="_next" value="https://TU-DOMINIO.com/#cotizacion" />
 
-          <p className="cotizacion-form-label">Tu equipo</p>
-
+          <p className="cotizacion-form-label">Tu equipo</p>   
+ 
           <input
             type="text"
             name="Modelo"
