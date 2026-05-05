@@ -1,5 +1,10 @@
 function Inicio() {
+
+    
+
     return (
+        <>
+        
         <section className="min-vh-100 bg-body-secondary d-flex align-items-center text-center text-lg-start pt-5">
             
                 <div className="container">
@@ -19,7 +24,7 @@ function Inicio() {
                             </p>
 
                             <div className="mt-4">
-                                <a href="#" className="btn btn-dark me-2">
+                                <a href="#iPhones" className="btn btn-dark me-2">
                                     Ver modelos
                                 </a>
                                 <a href="#" className="btn btn-outline-dark">
@@ -42,6 +47,148 @@ function Inicio() {
 
                 </div>
         </section>
+
+        <section id="iPhones" className="min-vh-100 bg-body-tertiary d-flex align-items-center ">
+            <div className="container">
+                <div className="text-center">
+                    <h2 className="fw-bold text-roboto fs-1">Stock Actual</h2>
+                    <p className="text-roboto">¡Si lo ves, lo tenemos!</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="cotizacion" className="cotizacion-section">
+  <div className="container">
+    <div className="row align-items-center g-5">
+
+      {/* TEXTO */}
+      <div className="col-12 col-lg-5">
+        <h2 className="text-roboto fw-bold fs-1">
+          Cotiza tu iPhone<br />
+          
+        </h2>
+        <p className="text-roboto text-secondary">
+          Entregá tu equipo actual y recibí tu próximo iPhone.
+        </p>
+
+        <div className="d-flex flex-column gap-3">
+          {[
+            { n: "01", title: "Completá el formulario", desc: "Modelo, estado y batería de tu equipo." },
+            { n: "02", title: "Recibís tu cotización", desc: "Te respondemos en menos de 24 hs." },
+            { n: "03", title: "Cerramos el canje", desc: "Llevás tu nuevo equipo el mismo día." },
+          ].map(({ n, title, desc }) => (
+            <div key={n} className="cotizacion-step">
+              <span className="cotizacion-step-num">{n}</span>
+              <div>
+                <p className="cotizacion-step-title">{title}</p>
+                <p className="cotizacion-step-desc">{desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* FORM */}
+      <div className="col-12 col-lg-6 col-xl-5 offset-xl-1">
+        <form
+          action="https://formsubmit.co/cotizacion@exodo.ar"
+          method="POST"
+          className="cotizacion-form"
+        >
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_next" value="https://TU-DOMINIO.com/#cotizacion" />
+
+          <p className="cotizacion-form-label">Tu equipo</p>
+
+          <input
+            type="text"
+            name="Modelo"
+            className="cotizacion-input"
+            placeholder="Modelo  —  Ejemplo: iPhone 13 Pro"
+            required
+          />
+
+          <div className="row g-2">
+            <div className="col-6">
+              <select name="Capacidad" className="cotizacion-input">
+                <option value="">Capacidad</option>
+                <option>128 GB</option>
+                <option>256 GB</option>
+                <option>512 GB</option>
+                <option>1 TB</option>
+              </select>
+            </div>
+            <div className="col-6">
+              <select name="Estado" className="cotizacion-input">
+                <option value="">Estado</option>
+                <option>Excelente</option>
+                <option>Muy bueno</option>
+                <option>Bueno</option>
+                <option>Con detalles</option>
+              </select>
+            </div>
+          </div>
+
+          <input
+            type="number"
+            name="Bateria"
+            className="cotizacion-input "
+            placeholder="Salud de batería  —  Ejemplo: 87%"
+            min="0"
+            max="100"
+          />
+
+          <textarea
+            name="Detalles"
+            rows="2"
+            className="cotizacion-input"
+            placeholder="Detalles adicionales  —  golpes, pantalla, etc."
+          />
+
+          <hr className="cotizacion-divider" />
+
+          <p className="cotizacion-form-label">Tus datos</p>
+
+          <div className="row g-2">
+            <div className="col-6">
+              <input
+                type="text"
+                name="Nombre"
+                className="cotizacion-input"
+                placeholder="Nombre"
+                required
+              />
+            </div>
+            <div className="col-6">
+              <input
+                type="email"
+                name="Email"
+                className="cotizacion-input"
+                placeholder="Email"
+                required
+              />
+            </div>
+          </div>
+
+          <input
+            type="text"
+            name="WhatsApp"
+            className="cotizacion-input"
+            placeholder="WhatsApp  —  opcional"
+          />
+
+          <button type="submit" className="cotizacion-btn-submit">
+            Enviar cotización
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+        </>
     )
 }
 
