@@ -14,19 +14,21 @@ function App() {
 
   return (
     <>
-    <BrowserRouter>
-      <Nav></Nav>
-        <main>
-          <Routes>
-            <Route path='/' element={<Inicio></Inicio>} ></Route>
-            <Route path='/nosotros' element={<Nosotros></Nosotros>}></Route>
-            <Route path='/contacto' element={<Contacto></Contacto>}></Route>
-            <Route path='/login' element={<Login></Login>}> </Route>
-            <Route path='/administrador' element={<Administrador></Administrador>}></Route>
-          </Routes>
-        </main>
-      <Footer></Footer>
-    </BrowserRouter>
+   {/* 
+<BrowserRouter>
+  <Nav></Nav>
+    <main>
+      <Routes>
+        <Route path='/' element={<Inicio></Inicio>} ></Route>
+        <Route path='/nosotros' element={<Nosotros></Nosotros>}></Route>
+        <Route path='/contacto' element={<Contacto></Contacto>}></Route>
+        <Route path='/login' element={<Login></Login>}> </Route>
+        <Route path='/administrador' element={<Administrador></Administrador>}></Route>
+      </Routes>
+    </main>
+  <Footer></Footer>
+</BrowserRouter> 
+*/}
     </>
   )
 }
