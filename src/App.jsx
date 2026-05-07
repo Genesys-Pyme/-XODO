@@ -24,7 +24,7 @@ function App() {
     <>
     <BrowserRouter>
       <Nav usuarioAdmin={usuarioAdmin} setUsuarioAdmin={setUsuarioAdmin}></Nav>
-        <main>
+        <main> 
           <Routes>
             <Route path='/' element={<Inicio></Inicio>} ></Route>
             <Route path='/nosotros' element={<Nosotros></Nosotros>}></Route>
