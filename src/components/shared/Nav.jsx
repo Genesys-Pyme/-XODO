@@ -1,6 +1,13 @@
-import { NavLink } from "react-router"
+import { NavLink, useNavigate } from "react-router"
 
-function Nav() {
+function Nav({usuarioAdmin, setUsuarioAdmin}) {
+
+    const navegacion = useNavigate()
+    const logout = ()=>{
+        setUsuarioAdmin(false)
+        navegacion("/login")
+    }
+
     return (
         <>
             {/* 🔹 MOBILE (navbar clásica) */}
@@ -30,9 +37,19 @@ function Nav() {
                         <li className="nav-item">
                             <NavLink to="/contacto" className="nav-link">Contacto</NavLink>
                         </li>
+
                         <li className="nav-item">
-                            <NavLink to="/login" className="nav-link">Login</NavLink>
+                            {usuarioAdmin ? <>
+                                <NavLink to="/administrador" className="nav-link">Administrador</NavLink>
+                                <button className="nav-link" onClick={logout}>Logout</button>
+
+                            </> : <NavLink to="/login" className="nav-link">Login</NavLink>
+                                   
+                            }
+                            
                         </li>
+
+                        
                     </ul>
                 </div>
             </nav>
@@ -59,9 +76,20 @@ function Nav() {
                                 <NavLink to="/contacto" className="nav-link">Contacto</NavLink>
                             </li>
 
-                            <li className="nav-item">
-                                <NavLink to="/login" className="nav-link">Login</NavLink>
+                             <li className="nav-item">
+                            {usuarioAdmin ? <div className="d-flex gap-3">
+
+                            
+                                <NavLink to="/administrador" className="nav-link">Administrador</NavLink>
+                                <button className="nav-link" onClick={logout}>Logout</button>
+
+                            </div> : <NavLink to="/login" className="nav-link">Login</NavLink>
+                                   
+                            }
+                            
                             </li>
+
+                            
 
                         </ul>
                     </div>
