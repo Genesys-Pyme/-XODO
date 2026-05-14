@@ -99,7 +99,7 @@ function Inicio() {
           <input type="hidden" name="_template" value="table" />
           <input type="hidden" name="_next" value="https://TU-DOMINIO.com/#cotizacion" />
 
-          <p className="cotizacion-form-label">Tu equipo</p>   
+          <p className="text-roboto">Tu equipo</p>   
  
           <input
             type="text"
@@ -148,7 +148,7 @@ function Inicio() {
 
           <hr className="cotizacion-divider" />
 
-          <p className="cotizacion-form-label">Tus datos</p>
+          <p className="text-roboto">Tus datos</p>
 
           <div className="row g-2">
             <div className="col-6">

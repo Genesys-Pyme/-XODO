@@ -81,7 +81,7 @@ function Nav({usuarioAdmin, setUsuarioAdmin}) {
 
                             
                                 <NavLink to="/administrador" className="nav-link">Administrador</NavLink>
-                                <button className="nav-link" onClick={logout}>Logout</button>
+                                <button className="nav-link" onClick={logout}>Logout <i class="bi bi-box-arrow-right"></i></button>
 
                             </div> : <NavLink to="/login" className="nav-link">Login</NavLink>
                                    

@@ -17,7 +17,7 @@ import FormularioAdmin from './components/pages/FormularioAdmin';
 
 
 function App() {
-  const [usuarioAdmin, setUsuarioAdmin] = useState(true)
+  const [usuarioAdmin, setUsuarioAdmin] = useState(false)
 
 
   return (
@@ -29,7 +29,7 @@ function App() {
             <Route path='/' element={<Inicio></Inicio>} ></Route>
             <Route path='/nosotros' element={<Nosotros></Nosotros>}></Route>
             <Route path='/contacto' element={<Contacto></Contacto>}></Route>
-            <Route path='/login' element={<Login></Login>}> </Route>
+            <Route path='/login' element={<Login setUsuarioAdmin={setUsuarioAdmin}></Login>}> </Route>
             <Route path='/administrador' element={<Protector usuarioAdmin={usuarioAdmin}></Protector>}>
               <Route index element={<Administrador></Administrador>}/>
               <Route path="crear" element={<FormularioAdmin></FormularioAdmin>}></Route>

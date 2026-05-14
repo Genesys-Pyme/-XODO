@@ -82,13 +82,7 @@ h1{
   gap: 10px;
 }
 
-.cotizacion-form-label {
-  font-size: 10px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: #6c757d;
-  margin: 0 0 4px;
-}
+
 
 .cotizacion-input {
   width: 100%;
@@ -103,6 +97,7 @@ h1{
   box-sizing: border-box;
   appearance: none;
   -webkit-appearance: none;
+  font-family: "Roboto";
 }
 
 .cotizacion-input::placeholder {
