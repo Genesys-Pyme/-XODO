@@ -107,7 +107,7 @@ function Inicio({productos}) {
       {/* FORM */}
       <div className="col-12 col-lg-6 col-xl-5 offset-xl-1">
         <form
-          action="https://formsubmit.co/cotizacion@exodo.ar"
+          action="https://formsubmit.co/cotizaciones@exodo.ar"
           method="POST"
           className="cotizacion-form"
         >
