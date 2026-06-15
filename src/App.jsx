@@ -1,66 +1,169 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import './App.css'
+import './App.css';
+
 import Nav from './components/shared/Nav';
 import Footer from './components/shared/Footer';
 import Contacto from './components/pages/Contacto';
 import Inicio from './components/pages/Inicio';
 import Login from './components/pages/Login';
 import Nosotros from './components/pages/Nosotros';
-import { BrowserRouter, Route, Routes } from 'react-router';
 import Administrador from './components/pages/Administrador';
 import Protector from './components/routes/Protector';
-import { useState } from 'react';
 import FormularioAdmin from './components/pages/FormularioAdmin';
 
+import { BrowserRouter, Route, Routes } from 'react-router';
+import { useEffect, useState } from 'react';
 
+import { db } from './firebase/config';
+import {
+  collection,
+  getDocs,
+  deleteDoc,
+  doc,
+  updateDoc
+} from 'firebase/firestore';
 
 function App() {
-  const [usuarioAdmin, setUsuarioAdmin] = useState(false)
-  const [productos, setProductos] = useState ([])
-  
-  const agregarProducto = (productoNuevo) => {
-    setProductos([...productos, productoNuevo]);
-  }
 
-const borrarProducto = (id) => {
-  const productosFiltrados = productos.filter(
-    (_, indice) => indice !== id
-  );
+  const [usuarioAdmin, setUsuarioAdmin] = useState(false);
+  const [productos, setProductos] = useState([]);
 
-  setProductos(productosFiltrados);
-};
+  const obtenerProductos = async () => {
+    try {
 
-const editarProducto = (indice, productoEditado) => {
-  const copiaProductos = [...productos];
+      const querySnapshot = await getDocs(
+        collection(db, "productos")
+      );
 
-  copiaProductos[indice] = productoEditado;
+      const productosFirebase = [];
 
-  setProductos(copiaProductos);
-};
+      querySnapshot.forEach((documento) => {
+        productosFirebase.push({
+          id: documento.id,
+          ...documento.data(),
+        });
+      });
+
+      setProductos(productosFirebase);
+
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    obtenerProductos();
+  }, []);
+
+  const borrarProducto = async (id) => {
+    try {
+
+      await deleteDoc(
+        doc(db, "productos", id)
+      );
+
+      obtenerProductos();
+
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const editarProducto = async (productoEditado) => {
+    try {
+
+      const productoRef = doc(
+        db,
+        "productos",
+        productoEditado.id
+      );
+
+      await updateDoc(productoRef, {
+        producto: productoEditado.producto,
+        precio: productoEditado.precio,
+        imagen: productoEditado.imagen,
+        bateria: productoEditado.bateria,
+        color: productoEditado.color,
+        descripcion: productoEditado.descripcion,
+      });
+
+      obtenerProductos();
+
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
-    <BrowserRouter>
-      <Nav usuarioAdmin={usuarioAdmin} setUsuarioAdmin={setUsuarioAdmin}></Nav>
-        <main> 
+      <BrowserRouter>
+
+        <Nav
+          usuarioAdmin={usuarioAdmin}
+          setUsuarioAdmin={setUsuarioAdmin}
+        />
+
+        <main>
           <Routes>
-            <Route path='/' element={<Inicio productos={productos}></Inicio>} ></Route>
-            <Route path='/nosotros' element={<Nosotros></Nosotros>}></Route>
-            <Route path='/contacto' element={<Contacto></Contacto>}></Route>
-            <Route path='/login' element={<Login setUsuarioAdmin={setUsuarioAdmin}></Login>}> </Route>
-            <Route path='/administrador' element={<Protector usuarioAdmin={usuarioAdmin}></Protector>}>
-              <Route index element={<Administrador productos={productos} borrarProducto={borrarProducto} editarProducto={editarProducto}></Administrador>}/>
-              <Route path="crear" element={<FormularioAdmin agregarProducto={agregarProducto} ></FormularioAdmin>}></Route>
-              <Route path="editar" element={<FormularioAdmin></FormularioAdmin>}></Route>
+
+            <Route
+              path='/'
+              element={<Inicio productos={productos} />}
+            />
+
+            <Route
+              path='/nosotros'
+              element={<Nosotros />}
+            />
+
+            <Route
+              path='/contacto'
+              element={<Contacto />}
+            />
+
+            <Route
+              path='/login'
+              element={
+                <Login
+                  setUsuarioAdmin={setUsuarioAdmin}
+                />
+              }
+            />
+
+            <Route
+              path='/administrador'
+              element={
+                <Protector usuarioAdmin={usuarioAdmin} />
+              }
+            >
+              <Route
+                index
+                element={
+                  <Administrador
+                    productos={productos}
+                    borrarProducto={borrarProducto}
+                    editarProducto={editarProducto}
+                  />
+                }
+              />
+
+              <Route
+                path='crear'
+                element={<FormularioAdmin />}
+              />
+
             </Route>
+
           </Routes>
         </main>
-      <Footer></Footer>
-    </BrowserRouter>
+
+        <Footer />
+
+      </BrowserRouter>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -1,119 +1,154 @@
 import { Link } from "react-router";
+import { db } from "../../firebase/config";
+import { collection, addDoc } from "firebase/firestore";
 
-function FormularioAdmin({ agregarProducto }) {
+function FormularioAdmin() {
 
-    const crearProducto = (e) => {
+    const crearProducto = async (e) => {
         e.preventDefault();
-
-        const archivo = e.target.imagen.files[0];
 
         const productoNuevo = {
             producto: e.target.producto.value,
             precio: e.target.precio.value,
-            imagen: URL.createObjectURL(archivo),
+            imagen: e.target.imagen.value,
             bateria: e.target.bateria.value,
             descripcion: e.target.descripcion.value,
             color: e.target.color.value,
         };
 
-        agregarProducto(productoNuevo);
+        try {
 
-        e.target.reset();
+            await addDoc(
+                collection(db, "productos"),
+                productoNuevo
+            );
+
+            alert("Producto creado correctamente");
+
+            e.target.reset();
+
+        } catch (error) {
+
+            console.log(error);
+
+            alert("Ocurrió un error al crear el producto");
+        }
     };
 
     return (
-        <>
-            <section className="min-vh-100 bg-body-secondary d-flex align-items-center pt-5">
-                <div className="container py-5">
-                    <form onSubmit={crearProducto}>
+        <section className="min-vh-100 bg-body-secondary d-flex align-items-center pt-5">
+            <div className="container py-5">
 
-                        {/* Producto */}
-                        <div className="mb-3">
-                            <label className="form-label">Producto*</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                placeholder="Ej: iPhone 13 Pro"
-                                name="producto"
-                                required
-                            />
-                        </div>
+                <form onSubmit={crearProducto}>
 
-                        {/* Precio */}
-                        <div className="mb-3">
-                            <label className="form-label">Precio*</label>
-                            <input
-                                type="number"
-                                className="form-control"
-                                placeholder="Ej: 500000"
-                                name="precio"
-                                required
-                            />
-                        </div>
+                    {/* Producto */}
+                    <div className="mb-3">
+                        <label className="form-label">
+                            Producto*
+                        </label>
 
-                        {/* Imagen */}
-                        <div className="mb-3">
-                            <label className="form-label">Imagen*</label>
-                            <input
-                                type="file"
-                                className="form-control"
-                                name="imagen"
-                                accept="image/*"
-                                required
-                            />
-                        </div>
+                        <input
+                            type="text"
+                            className="form-control"
+                            placeholder="Ej: iPhone 15 Pro"
+                            name="producto"
+                            required
+                        />
+                    </div>
 
-                        {/* Batería */}
-                        <div className="mb-3">
-                            <label className="form-label">Condición de batería*</label>
-                            <textarea
-                                className="form-control"
-                                rows="2"
-                                placeholder="Ej: 94%"
-                                name="bateria"
-                                required
-                            ></textarea>
-                        </div>
+                    {/* Precio */}
+                    <div className="mb-3">
+                        <label className="form-label">
+                            Precio*
+                        </label>
 
-                        {/* Color */}
-                        <div className="mb-3">
-                            <label className="form-label">Color*</label>
-                            <textarea
-                                className="form-control"
-                                rows="2"
-                                placeholder="Ej: Silver"
-                                name="color"
-                                required
-                            ></textarea>
-                        </div>
+                        <input
+                            type="number"
+                            className="form-control"
+                            placeholder="Ej: 1200000"
+                            name="precio"
+                            required
+                        />
+                    </div>
 
-                        {/* Descripción */}
-                        <div className="mb-3">
-                            <label className="form-label">Descripción breve*</label>
-                            <textarea
-                                className="form-control"
-                                rows="2"
-                                placeholder="Ej: Impecable estado."
-                                name="descripcion"
-                                required
-                            ></textarea>
-                        </div>
+                    {/* Imagen URL */}
+                    <div className="mb-3">
+                        <label className="form-label">
+                            URL de la imagen*
+                        </label>
 
-                        <button type="submit" className="btn btn-success">
-                            Crear
-                        </button>
+                        <input
+                            type="text"
+                            className="form-control"
+                            placeholder="https://..."
+                            name="imagen"
+                            required
+                        />
+                    </div>
 
-                        <Link
-                            className="btn btn-info text-white mx-2"
-                            to="/administrador"
-                        >
-                            Ir a Administrador
-                        </Link>
+                    {/* Batería */}
+                    <div className="mb-3">
+                        <label className="form-label">
+                            Condición de batería*
+                        </label>
 
-                    </form>
-                </div>
-            </section>
-        </>
+                        <textarea
+                            className="form-control"
+                            rows="2"
+                            placeholder="Ej: 94%"
+                            name="bateria"
+                            required
+                        ></textarea>
+                    </div>
+
+                    {/* Color */}
+                    <div className="mb-3">
+                        <label className="form-label">
+                            Color*
+                        </label>
+
+                        <textarea
+                            className="form-control"
+                            rows="2"
+                            placeholder="Ej: Silver"
+                            name="color"
+                            required
+                        ></textarea>
+                    </div>
+
+                    {/* Descripción */}
+                    <div className="mb-3">
+                        <label className="form-label">
+                            Descripción breve*
+                        </label>
+
+                        <textarea
+                            className="form-control"
+                            rows="2"
+                            placeholder="Ej: Impecable estado."
+                            name="descripcion"
+                            required
+                        ></textarea>
+                    </div>
+
+                    <button
+                        type="submit"
+                        className="btn btn-success"
+                    >
+                        Crear
+                    </button>
+
+                    <Link
+                        className="btn btn-info text-white mx-2"
+                        to="/administrador"
+                    >
+                        Ir a Administrador
+                    </Link>
+
+                </form>
+
+            </div>
+        </section>
     );
 }
 

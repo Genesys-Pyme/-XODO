@@ -5,16 +5,14 @@ function Administrador({ productos, borrarProducto, editarProducto }) {
 
   const [mostrarModal, setMostrarModal] = useState(false);
   const [productoSeleccionado, setProductoSeleccionado] = useState(null);
-  const [indiceSeleccionado, setIndiceSeleccionado] = useState(null);
 
-  const abrirModalEditar = (producto, indice) => {
+  const abrirModalEditar = (producto) => {
     setProductoSeleccionado({ ...producto });
-    setIndiceSeleccionado(indice);
     setMostrarModal(true);
   };
 
-  const guardarCambios = () => {
-    editarProducto(indiceSeleccionado, productoSeleccionado);
+  const guardarCambios = async () => {
+    await editarProducto(productoSeleccionado);
     setMostrarModal(false);
   };
 
@@ -52,17 +50,25 @@ function Administrador({ productos, borrarProducto, editarProducto }) {
               </thead>
 
               <tbody>
-                {productos.map((item, index) => (
-                  <tr key={index}>
+                {productos.map((item) => (
+                  <tr key={item.id}>
+
                     <td>{item.producto}</td>
-                    <td>${item.precio}</td>
+
+                    <td>
+                      ${Number(item.precio).toLocaleString("es-AR")}
+                    </td>
 
                     <td>
                       <img
                         src={item.imagen}
                         alt={item.producto}
-                        className="img-fluid"
-                        style={{ maxWidth: "100px" }}
+                        className="img-fluid rounded"
+                        style={{
+                          maxWidth: "100px",
+                          maxHeight: "100px",
+                          objectFit: "cover"
+                        }}
                       />
                     </td>
 
@@ -73,18 +79,19 @@ function Administrador({ productos, borrarProducto, editarProducto }) {
                     <td>
                       <button
                         className="btn btn-danger me-2"
-                        onClick={() => borrarProducto(index)}
+                        onClick={() => borrarProducto(item.id)}
                       >
                         <i className="bi bi-trash-fill"></i>
                       </button>
 
                       <button
                         className="btn btn-warning"
-                        onClick={() => abrirModalEditar(item, index)}
+                        onClick={() => abrirModalEditar(item)}
                       >
                         <i className="bi bi-pencil-fill text-light"></i>
                       </button>
                     </td>
+
                   </tr>
                 ))}
               </tbody>
@@ -95,12 +102,12 @@ function Administrador({ productos, borrarProducto, editarProducto }) {
         </div>
       </section>
 
-      {/* MODAL */}
+      {/* MODAL EDITAR */}
       {mostrarModal && (
         <div
           className="modal fade show d-block"
           tabIndex="-1"
-          style={{ backgroundColor: "rgba(0,0,0,0.5)" }}
+          style={{ backgroundColor: "rgba(0,0,0,.5)" }}
         >
           <div className="modal-dialog">
             <div className="modal-content">
@@ -119,8 +126,12 @@ function Administrador({ productos, borrarProducto, editarProducto }) {
 
               <div className="modal-body">
 
+                <label className="form-label">
+                  Producto
+                </label>
+
                 <input
-                  className="form-control mb-2"
+                  className="form-control mb-3"
                   value={productoSeleccionado?.producto || ""}
                   onChange={(e) =>
                     setProductoSeleccionado({
@@ -130,8 +141,12 @@ function Administrador({ productos, borrarProducto, editarProducto }) {
                   }
                 />
 
+                <label className="form-label">
+                  Precio
+                </label>
+
                 <input
-                  className="form-control mb-2"
+                  className="form-control mb-3"
                   type="number"
                   value={productoSeleccionado?.precio || ""}
                   onChange={(e) =>
@@ -142,8 +157,27 @@ function Administrador({ productos, borrarProducto, editarProducto }) {
                   }
                 />
 
+                <label className="form-label">
+                  URL Imagen
+                </label>
+
                 <input
-                  className="form-control mb-2"
+                  className="form-control mb-3"
+                  value={productoSeleccionado?.imagen || ""}
+                  onChange={(e) =>
+                    setProductoSeleccionado({
+                      ...productoSeleccionado,
+                      imagen: e.target.value,
+                    })
+                  }
+                />
+
+                <label className="form-label">
+                  Batería
+                </label>
+
+                <input
+                  className="form-control mb-3"
                   value={productoSeleccionado?.bateria || ""}
                   onChange={(e) =>
                     setProductoSeleccionado({
@@ -153,8 +187,12 @@ function Administrador({ productos, borrarProducto, editarProducto }) {
                   }
                 />
 
+                <label className="form-label">
+                  Color
+                </label>
+
                 <input
-                  className="form-control mb-2"
+                  className="form-control mb-3"
                   value={productoSeleccionado?.color || ""}
                   onChange={(e) =>
                     setProductoSeleccionado({
@@ -164,8 +202,13 @@ function Administrador({ productos, borrarProducto, editarProducto }) {
                   }
                 />
 
+                <label className="form-label">
+                  Descripción
+                </label>
+
                 <textarea
                   className="form-control"
+                  rows="3"
                   value={productoSeleccionado?.descripcion || ""}
                   onChange={(e) =>
                     setProductoSeleccionado({
@@ -178,6 +221,7 @@ function Administrador({ productos, borrarProducto, editarProducto }) {
               </div>
 
               <div className="modal-footer">
+
                 <button
                   className="btn btn-secondary"
                   onClick={() => setMostrarModal(false)}
@@ -189,14 +233,16 @@ function Administrador({ productos, borrarProducto, editarProducto }) {
                   className="btn btn-success"
                   onClick={guardarCambios}
                 >
-                  Guardar
+                  Guardar cambios
                 </button>
+
               </div>
 
             </div>
           </div>
         </div>
       )}
+
     </>
   );
 }
