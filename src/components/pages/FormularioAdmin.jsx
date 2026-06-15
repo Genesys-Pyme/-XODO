@@ -1,94 +1,120 @@
-function FormularioAdmin (){
+import { Link } from "react-router";
 
-    return(
+function FormularioAdmin({ agregarProducto }) {
 
+    const crearProducto = (e) => {
+        e.preventDefault();
+
+        const archivo = e.target.imagen.files[0];
+
+        const productoNuevo = {
+            producto: e.target.producto.value,
+            precio: e.target.precio.value,
+            imagen: URL.createObjectURL(archivo),
+            bateria: e.target.bateria.value,
+            descripcion: e.target.descripcion.value,
+            color: e.target.color.value,
+        };
+
+        agregarProducto(productoNuevo);
+
+        e.target.reset();
+    };
+
+    return (
         <>
-        <section className="min-vh-100 bg-body-secondary d-flex align-items-center pt-5">
-            <div className="container py-5">
-            <form>
+            <section className="min-vh-100 bg-body-secondary d-flex align-items-center pt-5">
+                <div className="container py-5">
+                    <form onSubmit={crearProducto}>
 
-                {/* Producto */}
-                <div className="mb-3">
-                <label className="form-label">Producto*</label>
-                <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Ej: Cafe"
-                    name="producto"
-                    required
-                />
+                        {/* Producto */}
+                        <div className="mb-3">
+                            <label className="form-label">Producto*</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                placeholder="Ej: iPhone 13 Pro"
+                                name="producto"
+                                required
+                            />
+                        </div>
+
+                        {/* Precio */}
+                        <div className="mb-3">
+                            <label className="form-label">Precio*</label>
+                            <input
+                                type="number"
+                                className="form-control"
+                                placeholder="Ej: 500000"
+                                name="precio"
+                                required
+                            />
+                        </div>
+
+                        {/* Imagen */}
+                        <div className="mb-3">
+                            <label className="form-label">Imagen*</label>
+                            <input
+                                type="file"
+                                className="form-control"
+                                name="imagen"
+                                accept="image/*"
+                                required
+                            />
+                        </div>
+
+                        {/* Batería */}
+                        <div className="mb-3">
+                            <label className="form-label">Condición de batería*</label>
+                            <textarea
+                                className="form-control"
+                                rows="2"
+                                placeholder="Ej: 94%"
+                                name="bateria"
+                                required
+                            ></textarea>
+                        </div>
+
+                        {/* Color */}
+                        <div className="mb-3">
+                            <label className="form-label">Color*</label>
+                            <textarea
+                                className="form-control"
+                                rows="2"
+                                placeholder="Ej: Silver"
+                                name="color"
+                                required
+                            ></textarea>
+                        </div>
+
+                        {/* Descripción */}
+                        <div className="mb-3">
+                            <label className="form-label">Descripción breve*</label>
+                            <textarea
+                                className="form-control"
+                                rows="2"
+                                placeholder="Ej: Impecable estado."
+                                name="descripcion"
+                                required
+                            ></textarea>
+                        </div>
+
+                        <button type="submit" className="btn btn-success">
+                            Crear
+                        </button>
+
+                        <Link
+                            className="btn btn-info text-white mx-2"
+                            to="/administrador"
+                        >
+                            Ir a Administrador
+                        </Link>
+
+                    </form>
                 </div>
-
-                {/* Precio */}
-                <div className="mb-3">
-                <label className="form-label">Precio*</label>
-                <input
-                    type="number"
-                    className="form-control"
-                    placeholder="Ej: 50"
-                    name="precio"
-                    required
-                />
-                </div>
-
-                {/* Imagen URL */}
-                <div className="mb-3">
-                <label className="form-label">Imagen URL*</label>
-                <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Ej: https://..."
-                    name="imagen"
-                    required
-                />
-                </div>
-
-                {/* Categoría */}
-                <div className="mb-3">
-                <label className="form-label">Categoría*</label>
-                <select className="form-select" name="categoria" required>
-                    <option value="">Seleccione una opción</option>
-                    <option value="Dulce">Dulce</option>
-                    <option value="Salado">Salado</option>
-                    <option value="Infusion">Infusion</option>
-                    <option value="Batidos">Batidos</option>
-                </select>
-                </div>
-
-                {/* Descripción breve */}
-                <div className="mb-3">
-                <label className="form-label">Descripción breve*</label>
-                <textarea
-                    className="form-control"
-                    rows="2"
-                    placeholder="Ej: Una taza de café suave y aromático."
-                    name="descripcionBreve"
-                    required
-                ></textarea>
-                </div>
-
-                {/* Descripción amplia */}
-                <div className="mb-3">
-                <label className="form-label">Descripción amplia*</label>
-                <textarea
-                    className="form-control"
-                    rows="4"
-                    placeholder="Ej: El café americano es..."
-                    name="descripcionAmplia"
-                    required
-                ></textarea>
-                </div>
-
-                {/* Botón */}
-                <button type="submit" className="btn btn-success">
-                Guardar
-                </button>
-
-            </form>
-        </div>
-        </section>
-        
+            </section>
         </>
-    )
+    );
 }
-export default FormularioAdmin
+
+export default FormularioAdmin;

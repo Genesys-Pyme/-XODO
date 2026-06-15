@@ -1,4 +1,4 @@
-function Inicio() {
+function Inicio({productos}) {
 
     
 
@@ -48,11 +48,27 @@ function Inicio() {
                 </div>
         </section>
 
-        <section id="iPhones" className="min-vh-100 bg-body-tertiary d-flex align-items-center ">
+        <section id="iPhones" className="min-vh-100 bg-body-tertiary d-flex align-items-center py-5">
             <div className="container">
                 <div className="text-center">
                     <h2 className="fw-bold text-roboto fs-1">Stock Actual</h2>
                     <p className="text-roboto">¡Si lo ves, lo tenemos!</p>
+
+                  {productos.map((item, id) =>(
+                    <div className="row">
+                      <div key={id} className="col-12 col-md-6 col-lg-4">
+                        <div className="card h-100">
+                          <img src={item.imagen} alt="imagen del producto" className="w-100 imagenIphone" />
+                          <h3 className="text-roboto">{item.producto}</h3>
+                          <h3 className="text-bebas">${item.precio}</h3>
+                          <p className="text-roboto">Condicion de bateria: {item.bateria} </p>
+                          <p className="text-roboto">Color: {item.color} </p>
+                          <p className="text-roboto"> {item.descripcion} </p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+
                 </div>
             </div>
         </section>
@@ -150,7 +166,7 @@ function Inicio() {
 
           <p className="text-roboto">Tus datos</p>
 
-          <div className="row g-2">
+          <div className="row g-2 text-roboto">
             <div className="col-6">
               <input
                 type="text"

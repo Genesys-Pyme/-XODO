@@ -177,3 +177,9 @@ select.cotizacion-input:has(option:checked:not([value=""])) {
   border-color: #555;
   color: #fff;
 }
+
+.imagenIphone{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
