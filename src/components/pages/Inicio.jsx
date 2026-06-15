@@ -1,4 +1,4 @@
-function Inicio() {
+function Inicio({productos}) {
 
     
 
@@ -27,7 +27,7 @@ function Inicio() {
                                 <a href="#iPhones" className="btn btn-dark me-2">
                                     Ver modelos
                                 </a>
-                                <a href="#" className="btn btn-outline-dark">
+                                <a href="#cotizacion" className="btn btn-outline-dark">
                                     Cotizar mi iPhone
                                 </a>
                             </div>
@@ -48,11 +48,27 @@ function Inicio() {
                 </div>
         </section>
 
-        <section id="iPhones" className="min-vh-100 bg-body-tertiary d-flex align-items-center ">
+        <section id="iPhones" className="min-vh-100 bg-body-tertiary d-flex align-items-center py-5">
             <div className="container">
                 <div className="text-center">
                     <h2 className="fw-bold text-roboto fs-1">Stock Actual</h2>
                     <p className="text-roboto">¡Si lo ves, lo tenemos!</p>
+
+                  {productos.map((item, id) =>(
+                    <div className="row">
+                      <div key={id} className="col-12 col-md-6 col-lg-4">
+                        <div className="card h-100">
+                          <img src={item.imagen} alt="imagen del producto" className="w-100 imagenIphone" />
+                          <h3 className="text-roboto">{item.producto}</h3>
+                          <h3 className="text-bebas">${item.precio}</h3>
+                          <p className="text-roboto">Condicion de bateria: {item.bateria} </p>
+                          <p className="text-roboto">Color: {item.color} </p>
+                          <p className="text-roboto"> {item.descripcion} </p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+
                 </div>
             </div>
         </section>
@@ -78,7 +94,7 @@ function Inicio() {
             { n: "03", title: "Cerramos el canje", desc: "Llevás tu nuevo equipo el mismo día." },
           ].map(({ n, title, desc }) => (
             <div key={n} className="cotizacion-step">
-              <span className="cotizacion-step-num">{n}</span>
+              <span className="cotizacion-step-num text-light">{n}</span>
               <div>
                 <p className="cotizacion-step-title">{title}</p>
                 <p className="cotizacion-step-desc">{desc}</p>
@@ -99,8 +115,8 @@ function Inicio() {
           <input type="hidden" name="_template" value="table" />
           <input type="hidden" name="_next" value="https://TU-DOMINIO.com/#cotizacion" />
 
-          <p className="cotizacion-form-label">Tu equipo</p>
-
+          <p className="text-roboto">Tu equipo</p>   
+ 
           <input
             type="text"
             name="Modelo"
@@ -148,9 +164,9 @@ function Inicio() {
 
           <hr className="cotizacion-divider" />
 
-          <p className="cotizacion-form-label">Tus datos</p>
+          <p className="text-roboto">Tus datos</p>
 
-          <div className="row g-2">
+          <div className="row g-2 text-roboto">
             <div className="col-6">
               <input
                 type="text"
