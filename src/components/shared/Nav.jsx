@@ -1,8 +1,10 @@
 import { NavLink, useNavigate } from "react-router";
 import { useEffect, useState } from "react";
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase/config";
 
 function Nav({ usuarioAdmin, setUsuarioAdmin }) {
-    
+
     const navegacion = useNavigate();
     const [scrolled, setScrolled] = useState(false);
 
@@ -18,31 +20,38 @@ function Nav({ usuarioAdmin, setUsuarioAdmin }) {
         };
     }, []);
 
-    const logout = () => {
-        setUsuarioAdmin(false);
-        navegacion("/login");
+    const logout = async () => {
+        try {
+
+            await signOut(auth);
+
+            setUsuarioAdmin(false);
+
+            navegacion("/");
+
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     const glassStyle = {
         background: "rgba(255,255,255,0.10)",
         backdropFilter: "blur(24px) saturate(180%)",
         WebkitBackdropFilter: "blur(24px) saturate(180%)",
-        
         transition: "all .35s ease",
     };
 
     return (
         <>
-            {/* MOBILE */}
             <nav
                 className="navbar navbar-expand-lg fixed-top px-3 d-lg-none"
                 style={
                     scrolled
                         ? glassStyle
                         : {
-                              background: "#fff",
-                              transition: "all .35s ease",
-                          }
+                            background: "#fff",
+                            transition: "all .35s ease",
+                        }
                 }
             >
                 <NavLink to="/" className="navbar-brand text-bebas fs-3">
@@ -110,16 +119,15 @@ function Nav({ usuarioAdmin, setUsuarioAdmin }) {
                 </div>
             </nav>
 
-            {/* DESKTOP */}
             <header
                 className="w-50 rounded-pill mx-auto fixed-top mt-3 d-none d-lg-block"
                 style={
                     scrolled
                         ? glassStyle
                         : {
-                              background: "#fff",
-                              transition: "all .35s ease",
-                          }
+                            background: "#fff",
+                            transition: "all .35s ease",
+                        }
                 }
             >
                 <nav className="navbar">
@@ -128,19 +136,13 @@ function Nav({ usuarioAdmin, setUsuarioAdmin }) {
                         <ul className="navbar-nav d-flex mx-auto align-items-center flex-row gap-3">
 
                             <li className="nav-item">
-                                <NavLink
-                                    to="/"
-                                    className="nav-link"
-                                >
+                                <NavLink to="/" className="nav-link">
                                     Inicio
                                 </NavLink>
                             </li>
 
                             <li className="nav-item">
-                                <NavLink
-                                    to="/nosotros"
-                                    className="nav-link"
-                                >
+                                <NavLink to="/nosotros" className="nav-link">
                                     Nosotros
                                 </NavLink>
                             </li>
@@ -153,10 +155,7 @@ function Nav({ usuarioAdmin, setUsuarioAdmin }) {
                             </NavLink>
 
                             <li className="nav-item">
-                                <NavLink
-                                    to="/contacto"
-                                    className="nav-link"
-                                >
+                                <NavLink to="/contacto" className="nav-link">
                                     Contacto
                                 </NavLink>
                             </li>

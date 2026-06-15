@@ -16,7 +16,8 @@ import FormularioAdmin from './components/pages/FormularioAdmin';
 import { BrowserRouter, Route, Routes } from 'react-router';
 import { useEffect, useState } from 'react';
 
-import { db } from './firebase/config';
+import { db, auth } from './firebase/config';
+
 import {
   collection,
   getDocs,
@@ -25,12 +26,32 @@ import {
   updateDoc
 } from 'firebase/firestore';
 
+import {
+  onAuthStateChanged
+} from 'firebase/auth';
+
 function App() {
 
-  const [usuarioAdmin, setUsuarioAdmin] = useState(false);
+  const [usuarioAdmin, setUsuarioAdmin] = useState(null);
   const [productos, setProductos] = useState([]);
 
+  // AUTH FIREBASE
+  useEffect(() => {
+
+    const unsubscribe = onAuthStateChanged(
+      auth,
+      (user) => {
+        setUsuarioAdmin(!!user);
+      }
+    );
+
+    return () => unsubscribe();
+
+  }, []);
+
+  // PRODUCTOS
   const obtenerProductos = async () => {
+
     try {
 
       const querySnapshot = await getDocs(
@@ -40,16 +61,20 @@ function App() {
       const productosFirebase = [];
 
       querySnapshot.forEach((documento) => {
+
         productosFirebase.push({
           id: documento.id,
           ...documento.data(),
         });
+
       });
 
       setProductos(productosFirebase);
 
     } catch (error) {
+
       console.log(error);
+
     }
   };
 
@@ -58,6 +83,7 @@ function App() {
   }, []);
 
   const borrarProducto = async (id) => {
+
     try {
 
       await deleteDoc(
@@ -67,11 +93,14 @@ function App() {
       obtenerProductos();
 
     } catch (error) {
+
       console.log(error);
+
     }
   };
 
   const editarProducto = async (productoEditado) => {
+
     try {
 
       const productoRef = doc(
@@ -92,77 +121,84 @@ function App() {
       obtenerProductos();
 
     } catch (error) {
+
       console.log(error);
+
     }
   };
 
   return (
-    <>
-      <BrowserRouter>
+    <BrowserRouter>
 
-        <Nav
-          usuarioAdmin={usuarioAdmin}
-          setUsuarioAdmin={setUsuarioAdmin}
-        />
+      <Nav
+        usuarioAdmin={usuarioAdmin}
+        setUsuarioAdmin={setUsuarioAdmin}
+      />
 
-        <main>
-          <Routes>
+      <main>
+
+        <Routes>
+
+          <Route
+            path="/"
+            element={
+              <Inicio productos={productos} />
+            }
+          />
+
+          <Route
+            path="/nosotros"
+            element={<Nosotros />}
+          />
+
+          <Route
+            path="/contacto"
+            element={<Contacto />}
+          />
+
+          <Route
+            path="/login"
+            element={
+              <Login
+                setUsuarioAdmin={setUsuarioAdmin}
+              />
+            }
+          />
+
+          <Route
+            path="/administrador"
+            element={
+              <Protector
+                usuarioAdmin={usuarioAdmin}
+              />
+            }
+          >
 
             <Route
-              path='/'
-              element={<Inicio productos={productos} />}
-            />
-
-            <Route
-              path='/nosotros'
-              element={<Nosotros />}
-            />
-
-            <Route
-              path='/contacto'
-              element={<Contacto />}
-            />
-
-            <Route
-              path='/login'
+              index
               element={
-                <Login
-                  setUsuarioAdmin={setUsuarioAdmin}
+                <Administrador
+                  productos={productos}
+                  borrarProducto={borrarProducto}
+                  editarProducto={editarProducto}
                 />
               }
             />
 
             <Route
-              path='/administrador'
-              element={
-                <Protector usuarioAdmin={usuarioAdmin} />
-              }
-            >
-              <Route
-                index
-                element={
-                  <Administrador
-                    productos={productos}
-                    borrarProducto={borrarProducto}
-                    editarProducto={editarProducto}
-                  />
-                }
-              />
+              path="crear"
+              element={<FormularioAdmin />}
+            />
 
-              <Route
-                path='crear'
-                element={<FormularioAdmin />}
-              />
+          </Route>
 
-            </Route>
+        </Routes>
 
-          </Routes>
-        </main>
+      </main>
 
-        <Footer />
+      <Footer />
 
-      </BrowserRouter>
-    </>
+    </BrowserRouter>
   );
 }
 
