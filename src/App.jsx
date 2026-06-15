@@ -51,32 +51,35 @@ function App() {
 
   // PRODUCTOS
   const obtenerProductos = async () => {
+  try {
 
-    try {
+    const querySnapshot = await getDocs(
+      collection(db, "productos")
+    );
 
-      const querySnapshot = await getDocs(
-        collection(db, "productos")
-      );
+    console.log("Cantidad documentos:", querySnapshot.size);
 
-      const productosFirebase = [];
+    const productosFirebase = [];
 
-      querySnapshot.forEach((documento) => {
+    querySnapshot.forEach((documento) => {
 
-        productosFirebase.push({
-          id: documento.id,
-          ...documento.data(),
-        });
+      console.log("Documento:", documento.id);
+      console.log("Datos:", documento.data());
 
+      productosFirebase.push({
+        id: documento.id,
+        ...documento.data(),
       });
+    });
 
-      setProductos(productosFirebase);
+    console.log("Productos finales:", productosFirebase);
 
-    } catch (error) {
+    setProductos(productosFirebase);
 
-      console.log(error);
-
-    }
-  };
+  } catch (error) {
+    console.log(error);
+  }
+};
 
   useEffect(() => {
     obtenerProductos();
