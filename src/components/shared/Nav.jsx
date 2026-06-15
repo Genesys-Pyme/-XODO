@@ -34,6 +34,14 @@ function Nav({ usuarioAdmin, setUsuarioAdmin }) {
         }
     };
 
+    const cerrarMenuMobile = () => {
+    const menu = document.getElementById("navbarMobile");
+
+    if (menu) {
+        menu.classList.remove("show");
+    }
+};
+
     const glassStyle = {
         background: "rgba(255,255,255,0.10)",
         backdropFilter: "blur(24px) saturate(180%)",
@@ -54,7 +62,7 @@ function Nav({ usuarioAdmin, setUsuarioAdmin }) {
                         }
                 }
             >
-                <NavLink to="/" className="navbar-brand text-bebas fs-3">
+                <NavLink to="/" className="navbar-brand text-bebas fs-3" onClick={cerrarMenuMobile}>
                     ÉXODO
                 </NavLink>
 
@@ -71,19 +79,19 @@ function Nav({ usuarioAdmin, setUsuarioAdmin }) {
                     <ul className="navbar-nav mt-2">
 
                         <li className="nav-item">
-                            <NavLink to="/" className="nav-link">
+                            <NavLink to="/" className="nav-link" onClick={cerrarMenuMobile}>
                                 Inicio
                             </NavLink>
                         </li>
 
                         <li className="nav-item">
-                            <NavLink to="/nosotros" className="nav-link">
+                            <NavLink to="/nosotros" className="nav-link" onClick={cerrarMenuMobile}>
                                 Nosotros
                             </NavLink>
                         </li>
 
                         <li className="nav-item">
-                            <NavLink to="/contacto" className="nav-link">
+                            <NavLink to="/contacto" className="nav-link" onClick={cerrarMenuMobile}>
                                 Contacto
                             </NavLink>
                         </li>
@@ -94,6 +102,7 @@ function Nav({ usuarioAdmin, setUsuarioAdmin }) {
                                     <NavLink
                                         to="/administrador"
                                         className="nav-link"
+                                        onClick={cerrarMenuMobile}
                                     >
                                         Administrador
                                     </NavLink>
@@ -101,6 +110,7 @@ function Nav({ usuarioAdmin, setUsuarioAdmin }) {
                                     <button
                                         className="nav-link border-0 bg-transparent"
                                         onClick={logout}
+                                        
                                     >
                                         Logout
                                     </button>
@@ -109,6 +119,7 @@ function Nav({ usuarioAdmin, setUsuarioAdmin }) {
                                 <NavLink
                                     to="/login"
                                     className="nav-link"
+                                    onClick={cerrarMenuMobile}
                                 >
                                     Login
                                 </NavLink>
@@ -136,13 +147,13 @@ function Nav({ usuarioAdmin, setUsuarioAdmin }) {
                         <ul className="navbar-nav d-flex mx-auto align-items-center flex-row gap-3">
 
                             <li className="nav-item">
-                                <NavLink to="/" className="nav-link">
+                                <NavLink to="/" className="nav-link" >
                                     Inicio
                                 </NavLink>
                             </li>
 
                             <li className="nav-item">
-                                <NavLink to="/nosotros" className="nav-link">
+                                <NavLink to="/nosotros" className="nav-link" >
                                     Nosotros
                                 </NavLink>
                             </li>
@@ -150,12 +161,14 @@ function Nav({ usuarioAdmin, setUsuarioAdmin }) {
                             <NavLink
                                 to="/"
                                 className="navbar-brand text-bebas px-3 mx-3 fs-1"
+                                
                             >
                                 ÉXODO
                             </NavLink>
 
                             <li className="nav-item">
-                                <NavLink to="/contacto" className="nav-link">
+                                <NavLink to="/contacto" className="nav-link" >
+                                
                                     Contacto
                                 </NavLink>
                             </li>
@@ -167,6 +180,7 @@ function Nav({ usuarioAdmin, setUsuarioAdmin }) {
                                         <NavLink
                                             to="/administrador"
                                             className="nav-link"
+                                            
                                         >
                                             Administrador
                                         </NavLink>
@@ -183,6 +197,7 @@ function Nav({ usuarioAdmin, setUsuarioAdmin }) {
                                     <NavLink
                                         to="/login"
                                         className="nav-link"
+                                        
                                     >
                                         Login
                                     </NavLink>

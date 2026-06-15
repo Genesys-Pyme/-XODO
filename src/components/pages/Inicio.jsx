@@ -48,30 +48,73 @@ function Inicio({productos}) {
                 </div>
         </section>
 
-        <section id="iPhones" className="min-vh-100 bg-body-tertiary d-flex align-items-center py-5">
-            <div className="container">
-                <div className="text-center">
-                    <h2 className="fw-bold text-roboto fs-1">Stock Actual</h2>
-                    <p className="text-roboto">¡Si lo ves, lo tenemos!</p>
+        <section
+  id="iPhones"
+  className="min-vh-100 bg-body-tertiary d-flex align-items-center py-5"
+>
+  <div className="container">
 
-                  {productos.map((item, id) =>(
-                    <div className="row">
-                      <div key={id} className="col-12 col-md-6 col-lg-4">
-                        <div className="card h-100">
-                          <img src={item.imagen} alt="imagen del producto" className="w-100 imagenIphone" />
-                          <h3 className="text-roboto">{item.producto}</h3>
-                          <h3 className="text-bebas">${item.precio}</h3>
-                          <p className="text-roboto">Condicion de bateria: {item.bateria} </p>
-                          <p className="text-roboto">Color: {item.color} </p>
-                          <p className="text-roboto"> {item.descripcion} </p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
+    <div className="text-center mb-5">
+      <h2 className="fw-bold text-roboto fs-1">
+        Stock Actual
+      </h2>
 
-                </div>
+      <p className="text-roboto">
+        ¡Si lo ves, lo tenemos!
+      </p>
+    </div>
+
+    <div className="row g-4">
+
+      {productos.map((item) => (
+
+        <div
+          key={item.id}
+          className="col-12 col-md-6 col-lg-4"
+        >
+
+          <div className="card h-100 border-0 shadow-sm">
+
+            <img
+              src={item.imagen}
+              alt={item.producto}
+              className="card-img-top imagenIphone"
+            />
+
+            <div className="card-body">
+
+              <h3 className="text-roboto h5">
+                {item.producto}
+              </h3>
+
+              <h4 className="text-bebas">
+                ${Number(item.precio).toLocaleString("es-AR")}
+              </h4>
+
+              <p className="text-roboto mb-1">
+                <strong>Batería:</strong> {item.bateria}
+              </p>
+
+              <p className="text-roboto mb-1">
+                <strong>Color:</strong> {item.color}
+              </p>
+
+              <p className="text-roboto mb-0">
+                {item.descripcion}
+              </p>
+
             </div>
-        </section>
+
+          </div>
+
+        </div>
+
+      ))}
+
+    </div>
+
+  </div>
+</section>
 
         <section id="cotizacion" className="cotizacion-section">
   <div className="container">
