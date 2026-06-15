@@ -1,22 +1,50 @@
 import { Link } from "react-router";
-import { db } from "../../firebase/config";
+import { db, storage } from "../../firebase/config";
+
 import { collection, addDoc } from "firebase/firestore";
+
+import {
+    ref,
+    uploadBytes,
+    getDownloadURL,
+} from "firebase/storage";
 
 function FormularioAdmin() {
 
     const crearProducto = async (e) => {
+
         e.preventDefault();
 
-        const productoNuevo = {
-            producto: e.target.producto.value,
-            precio: e.target.precio.value,
-            imagen: e.target.imagen.value,
-            bateria: e.target.bateria.value,
-            descripcion: e.target.descripcion.value,
-            color: e.target.color.value,
-        };
-
         try {
+
+            const archivo = e.target.imagen.files[0];
+
+            const nombreArchivo =
+                Date.now() + "-" + archivo.name;
+
+            const referenciaImagen = ref(
+                storage,
+                `productos/${nombreArchivo}`
+            );
+
+            await uploadBytes(
+                referenciaImagen,
+                archivo
+            );
+
+            const urlImagen =
+                await getDownloadURL(
+                    referenciaImagen
+                );
+
+            const productoNuevo = {
+                producto: e.target.producto.value,
+                precio: e.target.precio.value,
+                imagen: urlImagen,
+                bateria: e.target.bateria.value,
+                descripcion: e.target.descripcion.value,
+                color: e.target.color.value,
+            };
 
             await addDoc(
                 collection(db, "productos"),
@@ -31,7 +59,9 @@ function FormularioAdmin() {
 
             console.log(error);
 
-            alert("Ocurrió un error al crear el producto");
+            alert(
+                "Ocurrió un error al crear el producto"
+            );
         }
     };
 
@@ -41,7 +71,6 @@ function FormularioAdmin() {
 
                 <form onSubmit={crearProducto}>
 
-                    {/* Producto */}
                     <div className="mb-3">
                         <label className="form-label">
                             Producto*
@@ -56,7 +85,6 @@ function FormularioAdmin() {
                         />
                     </div>
 
-                    {/* Precio */}
                     <div className="mb-3">
                         <label className="form-label">
                             Precio*
@@ -71,22 +99,20 @@ function FormularioAdmin() {
                         />
                     </div>
 
-                    {/* Imagen URL */}
                     <div className="mb-3">
                         <label className="form-label">
-                            URL de la imagen*
+                            Imagen*
                         </label>
 
                         <input
-                            type="text"
+                            type="file"
                             className="form-control"
-                            placeholder="https://..."
                             name="imagen"
+                            accept="image/*"
                             required
                         />
                     </div>
 
-                    {/* Batería */}
                     <div className="mb-3">
                         <label className="form-label">
                             Condición de batería*
@@ -101,7 +127,6 @@ function FormularioAdmin() {
                         ></textarea>
                     </div>
 
-                    {/* Color */}
                     <div className="mb-3">
                         <label className="form-label">
                             Color*
@@ -116,7 +141,6 @@ function FormularioAdmin() {
                         ></textarea>
                     </div>
 
-                    {/* Descripción */}
                     <div className="mb-3">
                         <label className="form-label">
                             Descripción breve*
