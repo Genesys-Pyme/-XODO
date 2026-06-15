@@ -27,7 +27,7 @@ function Inicio({productos}) {
                                 <a href="#iPhones" className="btn btn-dark me-2">
                                     Ver modelos
                                 </a>
-                                <a href="#" className="btn btn-outline-dark">
+                                <a href="#cotizacion" className="btn btn-outline-dark">
                                     Cotizar mi iPhone
                                 </a>
                             </div>
@@ -94,7 +94,7 @@ function Inicio({productos}) {
             { n: "03", title: "Cerramos el canje", desc: "Llevás tu nuevo equipo el mismo día." },
           ].map(({ n, title, desc }) => (
             <div key={n} className="cotizacion-step">
-              <span className="cotizacion-step-num">{n}</span>
+              <span className="cotizacion-step-num text-light">{n}</span>
               <div>
                 <p className="cotizacion-step-title">{title}</p>
                 <p className="cotizacion-step-desc">{desc}</p>

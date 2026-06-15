@@ -9,8 +9,8 @@ function Nosotros() {
             Somos ÉXODO.
           </h1>
 
-          <p className="fs-4 text-secondary mt-4 col-lg-7 mx-auto">
-            Ayudamos a nuestros clientes a renovar sus iPhones de forma simple, segura y transparente.
+          <p className="fs-4 text-secondary text-roboto mt-4 col-lg-7 mx-auto">
+            Ayudamos a nuestros clientes a renovar sus equipos de forma simple y transparente.
           </p>
 
           <div className="d-flex justify-content-center gap-3 mt-5 flex-wrap">
@@ -43,24 +43,22 @@ function Nosotros() {
 
             <div className="col-lg-6">
 
-              <h2 className="display-4 fw-bold text-roboto mb-4">
-                Más que una tienda de celulares.
+              <h2 className="display-4 fw-bold text-black text-roboto mb-4">
+                Más que una tienda.
               </h2>
 
-              <p className="text-secondary fs-5">
-                ÉXODO nació en San Rafael, Mendoza, con una misión clara:
-                ofrecer una experiencia diferente para quienes buscan tecnología
+              <p className="text-roboto text-secondary fs-5">
+                <span className="text-black fw-bold">Desde San Rafael - Mendoza</span>, ofreciendo una experiencia diferente para quienes buscan tecnología
                 premium.
               </p>
 
-              <p className="text-secondary fs-5">
-                Nos especializamos exclusivamente en iPhone porque creemos que
-                la especialización marca la diferencia. Conocemos cada modelo,
-                cada detalle y cada necesidad de nuestros clientes.
+              <p className="text-roboto text-secondary fs-5">
+                <span className="text-black fw-bold">Nos especializamos</span> exclusivamente en Apple porque creemos que
+                marca la diferencia y resuelve cada necesidad de nuestros clientes.
               </p>
 
-              <p className="text-secondary fs-5">
-                Nuestro objetivo no es simplemente vender un teléfono. Buscamos
+              <p className="text-roboto text-secondary fs-5">
+                <span className="text-black fw-bold">Nuestro objetivo</span> no es simplemente vender un teléfono. Buscamos
                 generar confianza, brindar asesoramiento honesto y acompañar a
                 cada cliente antes, durante y después de su compra.
               </p>
@@ -71,33 +69,23 @@ function Nosotros() {
 
               <div className="bg-body-tertiary rounded-4 p-5 shadow-sm">
 
-                <h3 className="fw-bold mb-4">
+                <h3 className="fw-bold text-roboto mb-4">
                   ¿Por qué elegirnos?
                 </h3>
 
-                <div className="mb-4">
-                  <i className="bi bi-check-circle-fill me-2"></i>
-                  Equipos seleccionados y revisados cuidadosamente.
+                <div className="mb-4 d-flex gap-1">
+                  <i className="bi bi-check-circle-fill me-2 "></i>
+                  <p className="text-roboto">Equipos seleccionados.</p>
                 </div>
 
-                <div className="mb-4">
+                <div className="mb-4 d-flex gap-1">
                   <i className="bi bi-check-circle-fill me-2"></i>
-                  Atención personalizada y asesoramiento real.
+                  <p className="text-roboto">Atención personalizada.</p>
                 </div>
 
-                <div className="mb-4">
+                <div className="mb-4 d-flex gap-1">
                   <i className="bi bi-check-circle-fill me-2"></i>
-                  Plan canje para facilitar tu próxima actualización.
-                </div>
-
-                <div className="mb-4">
-                  <i className="bi bi-check-circle-fill me-2"></i>
-                  Transparencia y confianza en cada operación.
-                </div>
-
-                <div>
-                  <i className="bi bi-check-circle-fill me-2"></i>
-                  Negocio local con atención cercana y humana.
+                  <p className="text-roboto">Transparencia en cada operación.</p>
                 </div>
 
               </div>
@@ -110,26 +98,25 @@ function Nosotros() {
       </section>
 
       {/* CTA FINAL */}
-      <section className="min-vh-100 bg-body-secondary d-flex align-items-center">
+      <section className="min-vh-100 bg-black d-flex align-items-center">
         <div className="container text-center">
 
-          <h2 className="display-3 fw-bold text-roboto">
+          <h2 className="display-3 fw-bold text-white text-roboto">
             Tu próximo iPhone está
             <br />
             más cerca de lo que pensás.
           </h2>
 
-          <p className="text-secondary fs-5 mt-4 col-lg-6 mx-auto">
+          <p className="text-secondary text-roboto fs-5 mt-4 col-lg-6 mx-auto">
             Descubrí nuestro stock disponible y encontrá el equipo ideal para vos.
-            Equipos seleccionados, atención personalizada y la tranquilidad de
-            comprar con especialistas.
+            
           </p>
 
           <a
             href="/#iPhones"
-            className="btn btn-dark btn-lg px-5 mt-4"
+            className="btn btn-outline-light btn-lg px-5 mt-4 text-roboto"
           >
-            Ver stock actual
+            Ver stock
           </a>
 
         </div>
