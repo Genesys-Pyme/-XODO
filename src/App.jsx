@@ -12,6 +12,7 @@ import Nosotros from './components/pages/Nosotros';
 import Administrador from './components/pages/Administrador';
 import Protector from './components/routes/Protector';
 import FormularioAdmin from './components/pages/FormularioAdmin';
+import ScrollToTop from './components/shared/ScrollToTop';
 
 import { BrowserRouter, Route, Routes } from 'react-router';
 import { useEffect, useState } from 'react';
@@ -132,6 +133,8 @@ function App() {
 
   return (
     <BrowserRouter>
+
+       <ScrollToTop />
 
       <Nav
         usuarioAdmin={usuarioAdmin}
