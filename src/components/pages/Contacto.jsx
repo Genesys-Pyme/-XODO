@@ -93,7 +93,7 @@ function Contacto() {
 
                   <i className="bi bi-arrow-right fs-4 text-dark"></i>
 
-                </div>
+                </div> 
               </a>
 
               {/* FACEBOOK */}
