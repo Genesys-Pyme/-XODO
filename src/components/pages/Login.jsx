@@ -53,7 +53,7 @@ function Login({ setUsuarioAdmin }) {
 
                 <div className="row align-items-center">
 
-                    <div className="col-12 col-md-6">
+                    <div className="col-12 col-md-6" data-aos="fade-up">
 
                         <form
                             onSubmit={handleSubmit(iniciarSesion)}
@@ -118,14 +118,16 @@ function Login({ setUsuarioAdmin }) {
 
                     </div>
 
-                    <div className="col-12 col-md-6">
-
+                    <div className="col-12 col-md-6" data-aos="fade-up">
+                        <div className="d-flex flex-column align-items-center">
                         <img
                             src="/iphone.webp"
                             className="img-fluid imagen"
                             alt="iPhone"
                         />
 
+                        <a href="https://exodocell.netlify.app/"><button className="btn btn-dark">Abrir CRM</button></a>
+                        </div>
                     </div>
 
                 </div>

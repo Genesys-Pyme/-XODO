@@ -2,6 +2,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './App.css';
+import 'aos/dist/aos.css';
+import AOS from 'aos';
 
 import Nav from './components/shared/Nav';
 import Footer from './components/shared/Footer';
@@ -32,6 +34,13 @@ import {
 } from 'firebase/auth';
 
 function App() {
+
+  useEffect(() => {
+  AOS.init({
+    duration: 800,
+    once: true,
+  });
+}, []);
 
   const [usuarioAdmin, setUsuarioAdmin] = useState(null);
   const [productos, setProductos] = useState([]);
@@ -76,6 +85,7 @@ function App() {
     console.log("Productos finales:", productosFirebase);
 
     setProductos(productosFirebase);
+    AOS.refreshHard();
 
   } catch (error) {
     console.log(error);

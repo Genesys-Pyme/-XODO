@@ -6,7 +6,7 @@ function Contacto() {
         <div className="row align-items-center mt-5 g-5">
 
           {/* INFORMACIÓN */}
-          <div className="col-lg-6 mt-5">
+          <div className="col-lg-6 mt-5" data-aos="fade-up">
 
             <h1 className="display-3 fw-bold text-black text-roboto">
               Estamos para ayudarte.
@@ -24,7 +24,7 @@ function Contacto() {
           </div>
 
           {/* REDES */}
-          <div className="col-lg-6 mt-5">
+          <div className="col-lg-6 mt-5" data-aos="fade-up">
 
             <div className="bg-white rounded-4 shadow-sm p-5">
 

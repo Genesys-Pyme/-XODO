@@ -3,9 +3,9 @@ function Nosotros() {
     <>
       {/* HERO */}
       <section className="min-vh-100 bg-body-secondary d-flex align-items-center justify-content-center">
-        <div className="container text-center">
+        <div className="container text-center" data-aos="fade-up">
 
-          <h1 className="display-1 text-black mt-5 text-bebas">
+          <h1 className="display-1 text-black mt-5 text-bebas" >
             Somos ÉXODO.
           </h1>
 
@@ -41,7 +41,7 @@ function Nosotros() {
 
           <div className="row align-items-center g-5">
 
-            <div className="col-lg-6">
+            <div className="col-lg-6" data-aos="fade-up">
 
               <h2 className="display-4 fw-bold text-black text-roboto mb-4">
                 Más que una tienda.
@@ -65,7 +65,7 @@ function Nosotros() {
 
             </div>
 
-            <div className="col-lg-6">
+            <div className="col-lg-6" data-aos="fade-up">
 
               <div className="bg-body-tertiary rounded-4 p-5 shadow-sm">
 
@@ -99,7 +99,7 @@ function Nosotros() {
 
       {/* CTA FINAL */}
       <section className="min-vh-100 bg-black d-flex align-items-center">
-        <div className="container text-center">
+        <div className="container text-center" data-aos="fade-up">
 
           <h2 className="display-3 fw-bold text-white text-roboto">
             Tu próximo iPhone está

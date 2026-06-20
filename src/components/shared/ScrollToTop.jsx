@@ -1,21 +1,21 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router";
+import AOS from "aos";
 
 function ScrollToTop() {
+  const { pathname } = useLocation();
 
-    const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
 
-    useEffect(() => {
+    // Espera a que React termine de renderizar
+    setTimeout(() => {
+      AOS.refreshHard();
+    }, 100);
 
-        window.scrollTo({
-            top: 0,
-            left: 0,
-            behavior: "instant"
-        });
+  }, [pathname]);
 
-    }, [pathname]);
-
-    return null;
+  return null;
 }
 
 export default ScrollToTop;

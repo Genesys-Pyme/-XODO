@@ -12,7 +12,7 @@ function Inicio({productos}) {
                     <div className="row align-items-center">
 
                         {/* TEXTO */}
-                        <div className="col-12 col-lg-6">
+                        <div className="col-12 col-lg-6" data-aos="fade-up">
                             <h1 className=" text-roboto fw-bold">
                                 El iPhone que querés.
                                 <br />
@@ -34,7 +34,7 @@ function Inicio({productos}) {
                         </div>
 
                         {/* IMAGEN */}
-                        <div className="col-lg-6 text-center mt-4 mt-lg-0">
+                        <div className="col-lg-6 text-center mt-4 mt-lg-0" data-aos="fade-up">
                             <img 
                                 src="/iphone.webp" 
                                 alt="iPhone"
@@ -54,7 +54,7 @@ function Inicio({productos}) {
 >
   <div className="container">
 
-    <div className="text-center mb-5">
+    <div className="text-center mb-5" data-aos="fade-up">
       <h2 className="fw-bold text-roboto fs-1">
         Stock Actual
       </h2>
@@ -64,7 +64,7 @@ function Inicio({productos}) {
       </p>
     </div>
 
-    <div className="row g-4">
+    <div className="row g-4" data-aos="fade-up">
 
       {productos.map((item) => (
 
@@ -121,7 +121,7 @@ function Inicio({productos}) {
     <div className="row align-items-center g-5">
 
       {/* TEXTO */}
-      <div className="col-12 col-lg-5">
+      <div className="col-12 col-lg-5" data-aos="fade-up">
         <h2 className="text-roboto fw-bold fs-1">
           Cotiza tu iPhone<br />
           
@@ -148,7 +148,7 @@ function Inicio({productos}) {
       </div>
 
       {/* FORM */}
-      <div className="col-12 col-lg-6 col-xl-5 offset-xl-1">
+      <div className="col-12 col-lg-6 col-xl-5 offset-xl-1" data-aos="fade-up">
         <form
           action="https://formsubmit.co/cotizaciones@exodo.ar"
           method="POST"
@@ -246,7 +246,6 @@ function Inicio({productos}) {
     </div>
   </div>
 </section>
-
         </>
     )
 }
