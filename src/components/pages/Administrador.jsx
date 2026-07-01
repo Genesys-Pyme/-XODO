@@ -29,7 +29,7 @@ function Administrador({ productos, borrarProducto, editarProducto }) {
                 className="btn btn-outline-dark mx-2"
                 to="/administrador/crear"
               >
-                Nuevo iPhone
+                Nuevo Producto
               </Link>
             </div>
           </div>
