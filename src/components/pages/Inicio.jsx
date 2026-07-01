@@ -79,7 +79,7 @@ function Inicio({productos}) {
             className="col-12 col-md-6 col-lg-4"
           >
 
-            <div className="card h-100 border-0 shadow-sm">
+            <div className="card h-100 border-0 shadow-sm" style={{ background: '#ffffff' }}>
 
               <img
                 src={item.imagen}
@@ -87,7 +87,7 @@ function Inicio({productos}) {
                 className="card-img-top imagenIphone"
               />
 
-              <div className="card-body d-flex flex-column">
+              <div className="card-body d-flex flex-column" style={{ background: '#f2f2f2', borderRadius: '0 0 22px 22px' }}>
 
                 <div className="d-flex justify-content-between align-items-start">
 
@@ -151,7 +151,7 @@ function Inicio({productos}) {
 </div>
 
 {item.descripcion && (
-  <p className="text-roboto text-center text-muted small mb-3">
+  <p className="text-roboto text-center  text-black fw-bold small mb-3">
     {item.descripcion}
   </p>
 )}

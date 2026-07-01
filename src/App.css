@@ -196,12 +196,6 @@ select.cotizacion-input:has(option:checked:not([value=""])) {
     background: #f8f9fa;
 }
 
-.card {
-    border-radius: 22px;
-    overflow: hidden;
-    transition: .35s;
-}
-
 .card:hover{
     transform: translateY(-8px);
     box-shadow: 0 20px 45px rgba(0,0,0,.12)!important;
@@ -217,7 +211,7 @@ select.cotizacion-input:has(option:checked:not([value=""])) {
   height: 400px;
   object-fit: contain;
   padding: 20px;
-  background: #f8f9fa;
+  background: #ffffff;
 }
 
 .card {
@@ -226,14 +220,17 @@ select.cotizacion-input:has(option:checked:not([value=""])) {
   transition: 0.35s;
 }
 
+
+
 .card:hover {
   transform: translateY(-8px);
   box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12) !important;
 }
 
 .card-img-top {
-  background: #f8f9fa;
+  background: #ffffff;
 }
+
 
 /* ===== PAYMENT OPTIONS ===== */
 .payment-options {
@@ -298,7 +295,7 @@ select.cotizacion-input:has(option:checked:not([value=""])) {
 /* ===== VISA / MASTERCARD - DESTACADO ===== */
 .payment-option--visa {
   border: none;
-  background: #f1f2f4;
+  background: #ffffff;
   box-shadow: none;
   position: relative;
 }
@@ -342,7 +339,7 @@ select.cotizacion-input:has(option:checked:not([value=""])) {
 /* ===== NARANJA X - DESTACADO ===== */
 .payment-option--naranja {
   border: none;
-  background: #f1f2f4;
+  background: #ffffff;
   box-shadow: none;
   position: relative;
 }
