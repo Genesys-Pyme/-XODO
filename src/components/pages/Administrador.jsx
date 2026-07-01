@@ -158,19 +158,51 @@ function Administrador({ productos, borrarProducto, editarProducto }) {
                 />
 
                 <label className="form-label">
-                  URL Imagen
-                </label>
+  Imagen
+</label>
 
-                <input
-                  className="form-control mb-3"
-                  value={productoSeleccionado?.imagen || ""}
-                  onChange={(e) =>
-                    setProductoSeleccionado({
-                      ...productoSeleccionado,
-                      imagen: e.target.value,
-                    })
-                  }
-                />
+{productoSeleccionado?.imagen && (
+  <img
+    src={productoSeleccionado.imagen}
+    alt="preview"
+    className="img-fluid rounded mb-2"
+    style={{ maxHeight: 120, objectFit: 'cover' }}
+  />
+)}
+
+<input
+  className="form-control mb-1"
+  type="file"
+  accept="image/*"
+  onChange={(e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    if (file.size > 3 * 1024 * 1024) { alert('Máximo 3MB'); return; }
+    const reader = new FileReader();
+    reader.onload = (ev) =>
+      setProductoSeleccionado({
+        ...productoSeleccionado,
+        imagen: ev.target.result,
+      });
+    reader.readAsDataURL(file);
+  }}
+/>
+
+<small className="text-muted mb-3 d-block">
+  O pegá una URL directamente:
+</small>
+
+<input
+  className="form-control mb-3"
+  placeholder="https://..."
+  value={productoSeleccionado?.imagen?.startsWith('data:') ? '' : productoSeleccionado?.imagen || ""}
+  onChange={(e) =>
+    setProductoSeleccionado({
+      ...productoSeleccionado,
+      imagen: e.target.value,
+    })
+  }
+/>
 
                 <label className="form-label">
                   Batería
