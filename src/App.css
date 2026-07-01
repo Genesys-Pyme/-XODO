@@ -183,8 +183,177 @@ select.cotizacion-input:has(option:checked:not([value=""])) {
   color: #fff;
 }
 
-.imagenIphone{
+.imagenIphone {
+    width: 100%;
+    height: 400px;      /* antes seguramente ocupa todo */
+    object-fit: contain;
+    padding: 20px;
+    background: #f8f9fa;
+}
+
+.card {
+    border-radius: 22px;
+    overflow: hidden;
+    transition: .35s;
+}
+
+.card:hover{
+    transform: translateY(-8px);
+    box-shadow: 0 20px 45px rgba(0,0,0,.12)!important;
+}
+
+.card-img-top{
+    background:#f8f9fa;
+}
+
+/* ===== CARD BASE ===== */
+.imagenIphone {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: 400px;
+  object-fit: contain;
+  padding: 20px;
+  background: #f8f9fa;
+}
+
+.card {
+  border-radius: 22px;
+  overflow: hidden;
+  transition: 0.35s;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12) !important;
+}
+
+.card-img-top {
+  background: #f8f9fa;
+}
+
+/* ===== PAYMENT OPTIONS ===== */
+.payment-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.payment-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 14px;
+  border: 1px solid #eee;
+
+}
+
+.payment-option__icon {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  
+  
+  font-size: 1.1rem;
+}
+
+.payment-option__icon--naranja {
+  background: transparent;
+}
+
+.payment-option__icon--naranja img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.payment-option__info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+  flex: 1;
+}
+
+.payment-option__info strong {
+  font-size: 0.9rem;
+}
+
+.payment-option__info span {
+  font-size: 0.8rem;
+  color: #777;
+}
+
+/* ===== VISA / MASTERCARD - DESTACADO ===== */
+/* ===== VISA / MASTERCARD - DESTACADO ===== */
+/* ===== VISA / MASTERCARD - DESTACADO ===== */
+/* ===== VISA / MASTERCARD - DESTACADO ===== */
+/* ===== VISA / MASTERCARD - DESTACADO ===== */
+.payment-option--visa {
+  border: none;
+  background: #f1f2f4;
+  box-shadow: none;
+  position: relative;
+}
+
+.payment-option--visa .payment-option__info strong {
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.payment-option--visa .payment-option__info span {
+  font-size: 0.85rem;
+  color: #444;
+}
+
+.payment-option__amount {
+  font-size: 1.05rem;
+  
+}
+
+.payment-option__brands {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.payment-option__brand-logo {
+  height: 26px;
+  width: auto;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.payment-option__brand-logo--visa {
+  
+  padding: 4px 6px;
+  height: 26px;
+}
+
+/* ===== NARANJA X ===== */
+/* ===== NARANJA X - DESTACADO ===== */
+.payment-option--naranja {
+  border: none;
+  background: #f1f2f4;
+  box-shadow: none;
+  position: relative;
+}
+
+.payment-option--naranja .payment-option__info strong {
+  font-size: 1rem;
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.payment-option--naranja .payment-option__info span {
+  font-size: 0.85rem;
+  color: #444;
+}
+
+.payment-option__brand-logo--naranjax {
+  height: 34px;
 }

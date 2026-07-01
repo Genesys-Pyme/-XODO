@@ -66,55 +66,119 @@ function Inicio({productos}) {
 
     <div className="row g-4" data-aos="fade-up">
 
-      {productos.map((item) => (
+      {productos.map((item) => {
 
-        <div
-          key={item.id}
-          className="col-12 col-md-6 col-lg-4"
-        >
+        const precio = Number(item.precio);
+        const cuota3 = Math.round(precio / 3);
+        const cuotaPlanZ = Math.round((precio * 1.15) / 3);
 
-          <div className="card h-100 border-0 shadow-sm">
+        return (
 
-            <img
-              src={item.imagen}
-              alt={item.producto}
-              className="card-img-top imagenIphone"
-            />
+          <div
+            key={item.id}
+            className="col-12 col-md-6 col-lg-4"
+          >
 
-            <div className="card-body">
+            <div className="card h-100 border-0 shadow-sm">
 
-              <h3 className="text-roboto h5">
-                {item.producto}
-              </h3>
+              <img
+                src={item.imagen}
+                alt={item.producto}
+                className="card-img-top imagenIphone"
+              />
 
-              <h4 className="text-bebas">
-                ${Number(item.precio).toLocaleString("es-AR")}
-              </h4>
+              <div className="card-body d-flex flex-column">
 
-              <p className="text-roboto mb-1">
-                <strong>Batería:</strong> {item.bateria}
-              </p>
+                <div className="d-flex justify-content-between align-items-start">
 
-              <p className="text-roboto mb-1">
-                <strong>Color:</strong> {item.color}
-              </p>
+                  <div>
+                    <h3 className="text-roboto h5 fw-bold">
+                      {item.producto}
+                    </h3>
+                  </div>
 
-              <p className="text-roboto mb-0">
-                {item.descripcion}
-              </p>
+                  <i className="bi bi-patch-check-fill text-black fs-4"></i>
+
+                </div>
+
+ <h2 className="text-bebas display-6 mb-3">
+  ${precio.toLocaleString("es-AR")}
+</h2>
+
+{/* OPCIONES DE PAGO */}
+<div className="payment-options mb-3">
+
+  {/* VISA / MASTERCARD - DESTACADO */}
+  {/* VISA / MASTERCARD - DESTACADO */}
+<div className="payment-option payment-option--visa mb-2">
+  <div className="payment-option__info">
+    <strong>3 cuotas SIN INTERÉS</strong>
+    <span>
+      de <b className="payment-option__amount">${cuota3.toLocaleString("es-AR")}</b>
+    </span>
+  </div>
+  <div className="payment-option__brands">
+    <img src="/visa-logo.jpg" alt="Visa" className="payment-option__brand-logo payment-option__brand-logo--visa" />
+    <img src="/master-logo.png" alt="Mastercard" className="payment-option__brand-logo" />
+  </div>
+</div>
+
+  {/* NARANJA X - DESTACADO */}
+  <div className="payment-option payment-option--naranja">
+    <div className="payment-option__info">
+      <strong>3 cuotas FIJAS (Plan Z)</strong>
+      <span>
+        de <b className="payment-option__amount">${cuotaPlanZ.toLocaleString("es-AR")}</b>
+      </span>
+    </div>
+    <div className="payment-option__brands">
+      <img src="/naranjax.png" alt="Naranja X" className="payment-option__brand-logo payment-option__brand-logo--naranjax" />
+    </div>
+  </div>
+
+</div>
+
+{/* DETALLES */}
+<div className=" d-flex gap-3 justify-content-center detail-pills mb-3">
+  <span className="detail-pill">
+    <i className="bi bi-battery-half"></i>
+    <strong>{item.bateria}</strong>
+  </span>
+  <span className="detail-pill">
+    <i className="bi bi-palette-fill"></i>
+    <strong>{item.color}</strong>
+  </span>
+</div>
+
+{item.descripcion && (
+  <p className="text-roboto text-center text-muted small mb-3">
+    {item.descripcion}
+  </p>
+)}
+
+{/* FOOTER */}
+<div className="mt-auto pt-2 ">
+  <div className="d-flex justify-content-center align-items-center ">
+    <a href="https://wa.me/5492604093585" target="_blank" rel="noopener noreferrer" className="text-decoration-none"><button className="btn btn-dark">¡Comprar!</button></a>
+  </div>
+</div>
+
+
+              </div>
 
             </div>
 
           </div>
 
-        </div>
+        );
 
-      ))}
+      })}
 
     </div>
 
   </div>
-</section>
+
+        </section>
 
         <section id="cotizacion" className="cotizacion-section">
   <div className="container">
