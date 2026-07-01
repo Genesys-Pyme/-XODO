@@ -1,12 +1,17 @@
-import { NavLink, useNavigate } from "react-router";
-import { useEffect, useState } from "react";
+import { NavLink, useNavigate, useLocation } from "react-router";
+import { useEffect, useRef, useState } from "react";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase/config";
 
 function Nav({ usuarioAdmin, setUsuarioAdmin }) {
 
     const navegacion = useNavigate();
+    const location = useLocation();
     const [scrolled, setScrolled] = useState(false);
+    const [onDark, setOnDark] = useState(false);
+
+    const navRef = useRef(null);
+    const headerRef = useRef(null);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -19,6 +24,64 @@ function Nav({ usuarioAdmin, setUsuarioAdmin }) {
             window.removeEventListener("scroll", handleScroll);
         };
     }, []);
+
+    // Detecta si hay una sección con fondo negro pasando por la altura EXACTA del nav
+    useEffect(() => {
+        let observer;
+        let frameId;
+
+        const crearObserver = () => {
+            const secciones = document.querySelectorAll(".cotizacion-section");
+
+            if (secciones.length === 0) {
+                setOnDark(false);
+                return;
+            }
+
+            const seccionesActivas = new Set();
+
+            const elementoActivo =
+                window.innerWidth >= 992 ? headerRef.current : navRef.current;
+
+            const navHeight = elementoActivo
+                ? elementoActivo.getBoundingClientRect().bottom
+                : 80;
+
+            if (observer) observer.disconnect();
+
+            observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            seccionesActivas.add(entry.target);
+                        } else {
+                            seccionesActivas.delete(entry.target);
+                        }
+                    });
+
+                    setOnDark(seccionesActivas.size > 0);
+                },
+                {
+                    rootMargin: `-${navHeight}px 0px -${window.innerHeight - navHeight - 1}px 0px`,
+                    threshold: 0,
+                }
+            );
+
+            secciones.forEach((sec) => observer.observe(sec));
+        };
+
+        // Espera un frame para asegurarse de que la nueva página ya esté renderizada
+        setOnDark(false);
+        frameId = requestAnimationFrame(crearObserver);
+
+        window.addEventListener("resize", crearObserver);
+
+        return () => {
+            if (observer) observer.disconnect();
+            if (frameId) cancelAnimationFrame(frameId);
+            window.removeEventListener("resize", crearObserver);
+        };
+    }, [location.pathname]);
 
     const logout = async () => {
         try {
@@ -52,12 +115,13 @@ function Nav({ usuarioAdmin, setUsuarioAdmin }) {
     return (
         <>
             <nav
-                className="navbar navbar-expand-lg fixed-top px-3 d-lg-none"
+                ref={navRef}
+                className={`navbar navbar-expand-lg fixed-top px-3 d-lg-none ${onDark ? "navbar-dark" : "navbar-light"}`}
                 style={
                     scrolled
                         ? glassStyle
                         : {
-                            background: "#fff",
+                            background: onDark ? "transparent" : "#fff",
                             transition: "all .35s ease",
                         }
                 }
@@ -131,17 +195,18 @@ function Nav({ usuarioAdmin, setUsuarioAdmin }) {
             </nav>
 
             <header
+                ref={headerRef}
                 className="w-50 rounded-pill mx-auto fixed-top mt-3 d-none d-lg-block"
                 style={
                     scrolled
                         ? glassStyle
                         : {
-                            background: "#fff",
+                            background: onDark ? "transparent" : "#fff",
                             transition: "all .35s ease",
                         }
                 }
             >
-                <nav className="navbar">
+                <nav className={`navbar ${onDark ? "navbar-dark" : "navbar-light"}`}>
                     <div className="container">
 
                         <ul className="navbar-nav d-flex mx-auto align-items-center flex-row gap-3">

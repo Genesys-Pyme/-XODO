@@ -309,7 +309,7 @@ function Inicio({productos}) {
 
     </div>
   </div>
-</section>
+        </section>
         </>
     )
 }

@@ -98,7 +98,7 @@ function Nosotros() {
       </section>
 
       {/* CTA FINAL */}
-      <section className="min-vh-100 bg-black d-flex align-items-center">
+      <section className="min-vh-100 cotizacion-section d-flex align-items-center">
         <div className="container text-center" data-aos="fade-up">
 
           <h2 className="display-3 fw-bold text-white text-roboto">
