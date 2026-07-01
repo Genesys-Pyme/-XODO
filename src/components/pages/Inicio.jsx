@@ -66,7 +66,7 @@ function Inicio({productos}) {
 
     <div className="row g-4" data-aos="fade-up">
 
-      {productos.map((item) => {
+      {[...productos].sort((a, b) => Number(b.precio) - Number(a.precio)).map((item) => {
 
         const precio = Number(item.precio);
         const cuota3 = Math.round(precio / 3);
