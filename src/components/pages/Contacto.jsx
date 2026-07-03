@@ -98,7 +98,7 @@ function Contacto() {
 
               {/* FACEBOOK */}
               <a
-                href="https://facebook.com/"
+                href="https://www.facebook.com/profile.php?id=61591404576523"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-decoration-none"
