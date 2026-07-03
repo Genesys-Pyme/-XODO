@@ -70,7 +70,7 @@ function Inicio({productos}) {
 
         const precio = Number(item.precio);
         const cuota3 = Math.round(precio / 3);
-        const cuotaPlanZ = Math.round((precio * 1.15) / 3);
+        const cuotaPlanZ = Math.round((precio * 100 / 85) / 3);
 
         return (
 
