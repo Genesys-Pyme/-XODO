@@ -126,7 +126,7 @@ function Login({ setUsuarioAdmin }) {
                             alt="iPhone"
                         />
 
-                        <a href="https://exodocell.netlify.app/"><button className="btn btn-dark">Abrir CRM</button></a>
+                        <a href="https://app.genesys.com.ar"><button className="btn btn-dark">Abrir CRM</button></a>
                         </div>
                     </div>
 
